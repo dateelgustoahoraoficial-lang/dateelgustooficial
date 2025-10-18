@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Carteras</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+                        url('https://images.unsplash.com/photo-1557683316-973673baf926?w=1600') center/cover fixed;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            border: 2px solid rgba(200, 180, 150, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #c89b7b 0%, #8d6e63 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+        
+        .header p {
+            font-size: 1.3em;
+            color: #6d4c41;
+            font-style: italic;
+            font-weight: 300;
+        }
+        
+        .catalog {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 35px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .product-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.12);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 3px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+        }
+        
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 25px;
+            padding: 3px;
+            background: linear-gradient(135deg, #d4af37, #c89b7b, #8d6e63);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .product-card:hover::before {
+            opacity: 1;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-bottom: 2px solid #f0f0f0;
+            transition: transform 0.4s ease;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        
+        .product-info {
+            padding: 25px;
+            background: linear-gradient(to bottom, rgba(255,255,255,1), rgba(252,248,245,1));
+        }
+        
+        .product-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #4a4a4a;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+        
+        .product-description {
+            color: #666;
+            margin-bottom: 18px;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+        
+        .price {
+            font-size: 2em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #c89b7b 0%, #8d6e63 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .contact-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #25D366 0%, #20ba5a 100%);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            letter-spacing: 0.5px;
+        }
+        
+        .contact-btn:hover {
+            background: linear-gradient(135deg, #20ba5a 0%, #1a9e4d 100%);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.12);
+            border: 3px solid rgba(200, 155, 123, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        
+        .footer h3 {
+            font-size: 1.8em;
+            background: linear-gradient(135deg, #c89b7b 0%, #8d6e63 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .footer p {
+            color: #666;
+            font-size: 1.15em;
+            margin: 8px 0;
+            line-height: 1.8;
+        }
+        
+        .footer strong {
+            color: #8d6e63;
+            font-weight: 700;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .catalog {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>✨ CATÁLOGO DE CARTERAS ✨</h1>
+        <p>Elegancia y estilo para cada ocasión</p>
+    </div>
+    
+    <div class="catalog">
+        <!-- Producto 1 -->
+        <div class="product-card">
+            <img src="fotos/image1.jpg" alt="Cartera Marrón Ardilla Roja" class="product-image">
+            <div class="product-info">
+                <div class="product-title">Cartera Bandolera Marrón</div>
+                <div class="product-description">Elegante cartera Ardilla Roja en tono marrón con textura grabada. Incluye correa ajustable con logo. Perfecta para salir.</div>
+                <p class="price">$39.999</p>
+                <a href="https://wa.me/5493812213452?text=Hola!%20Me%20interesa%20la%20Cartera%20Bandolera%20Marrón" class="contact-btn">Consultar por WhatsApp</a>
+            </div>
+        </div>
+        
+        <!-- Producto 2 -->
+        <div class="product-card">
+            <img src="fotos/image2.jpg" alt="Cartera Negra Ardilla Roja" class="product-image">
+            <div class="product-info">
+                <div class="product-title">Cartera Negra Ardilla Roja</div>
+                <div class="product-description">Cartera Ardilla Roja negra con múltiples compartimentos y cierres dorados. Ideal para mamá, espaciosa y funcional.</div>
+                <p class="price">$39.999</p>
+                <a href="https://wa.me/5493812213452?text=Hola!%20Me%20interesa%20la%20Cartera%20Práctica%20Negra" class="contact-btn">Consultar por WhatsApp</a>
+            </div>
+        </div>
+        
+        <!-- Producto 3 -->
+        <div class="product-card">
+            <img src="fotos/image3.jpg" alt="Cartera Gris I-Run" class="product-image">
+            <div class="product-info">
+                <div class="product-title">Cartera Blanca Ardilla Roja</div>
+                <div class="product-description">Modelo elegante blanca . Diseño moderno con cierre frontal. Perfecta para el día a día.</div>
+                <p class="price">$39.999</p>
+                <a href="https://wa.me/5493812213452?text=Hola!%20Me%20interesa%20la%20Cartera%20Crossbody%20Gris" class="contact-btn">Consultar por WhatsApp</a>
+            </div>
+        </div>
+        
+        <!-- Producto 4 -->
+        <div class="product-card">
+            <img src="fotos/image4.jpg" alt="Cartera Gris Metalizada" class="product-image">
+            <div class="product-info">
+                <div class="product-title">Cartera Elegante Plateada</div>
+                <div class="product-description">Hermosa cartera I-Run en tono gris metalizado con acabado brillante. Compacta y sofisticada para eventos especiales.</div>
+                <p class="price">$35.499</p>
+                <a href="https://wa.me/5493812213452?text=Hola!%20Me%20interesa%20la%20Cartera%20Elegante%20Plateada" class="contact-btn">Consultar por WhatsApp</a>
+            </div>
+        </div>
+        
+        <!-- Producto 5 -->
+        <div class="product-card">
+            <img src="fotos/image5.jpg" alt="Cartera Negra Ardillage" class="product-image">
+            <div class="product-info">
+                <div class="product-title">Cartera Negra </div>
+                <div class="product-description">Dulce cartera Ardillage con múltiples bolsillos. Perfecta para combinar estilo y elegancia.</div>
+                <p class="price">$35.499</p>
+                <a href="https://wa.me/5493812213452?text=Hola!%20Me%20interesa%20la%20Cartera%20Rosa%20Pastel" class="contact-btn">Consultar por WhatsApp</a>
+            </div>
+        </div>
+        
+        <!-- Producto 6 -->
+        <div class="product-card">
+            <img src="fotos/image6.jpg" alt="Cartera Negra Redonda" class="product-image">
+            <div class="product-info">
+                <div class="product-title">Cartera Rosa Ardilla Roja</div>
+                <div class="product-description">Cartera  con diseño redondeado y múltiples cierres. Ideal para salir de noche.</div>
+                <p class="price">$13000</p>
+                <a href="https://wa.me/5493812213452?text=Hola!%20Me%20interesa%20la%20Cartera%20Mini%20Negra" class="contact-btn">Consultar por WhatsApp</a>
+            </div>
+        </div>
+        
+        <!-- Producto 7 -->
+        <div class="product-card">
+            <img src="fotos/image7.jpg" alt="Cartera Ardilla roja Marron " class="product-image">
+            <div class="product-info">
+                <div class="product-title">Cartera Ardilla roja Marron</div>
+                <div class="product-description">Cartera elegante, versátil y moderna para uso diario.</div>
+                <p class="price">$14500</p>
+                <a href="https://wa.me/5493812213452?text=Hola!%20Me%20interesa%20la%20Cartera%20Crossbody%20Azul" class="contact-btn">Consultar por WhatsApp</a>
+            </div>
+        </div>
+        
+        <!-- Producto 8 -->
+        <div class="product-card">
+            <img src="fotos/image8.jpg" alt="Cartera Negra Nocturna" class="product-image">
+            <div class="product-info">
+                <div class="product-title">Cartera Negra Nocturna</div>
+                <div class="product-description">Cartera con elegante textura y diseño perfecto para cualquier ocasión.</div>
+                <p class="price">$15500</p>
+                <a href="https://wa.me/5493812213452?text=Hola!%20Me%20interesa%20la%20Cartera%20Beige%20Texturada" class="contact-btn">Consultar por WhatsApp</a>
+            </div>
+        </div>
+        
+        <!-- Producto 9 -->
+        <div class="product-card">
+            <img src="fotos/image9.jpg" alt="Cartera Negra con Strass" class="product-image">
+            <div class="product-info">
+                <div class="product-title">Cartera Elegante Estilo Rosa Pastel</div>
+                <div class="product-description">Sofisticada cartera perfecta para eventos y salidas especiales.</div>
+                <p class="price">$17000</p>
+                <a href="https://wa.me/5493812213452?text=Hola!%20Me%20interesa%20la%20Cartera%20Elegante%20con%20Broche" class="contact-btn">Consultar por WhatsApp</a>
+            </div>
+        </div>
+        
+        <!-- Producto 10 -->
+        <div class="product-card">
+            <img src="fotos/image10.jpg" alt="Cartera Gris con Broche" class="product-image">
+            <div class="product-info">
+                <div class="product-title">Cartera Marron Elegante</div>
+                <div class="product-description">Cartera elegante con diseño coqueto y buen gusto.</div>
+                <p class="price">$15000</p>
+                <a href="https://wa.me/5493812213452?text=Hola!%20Me%20interesa%20la%20Cartera%20Gris%20Elegante" class="contact-btn">Consultar por WhatsApp</a>
+            </div>
+        </div>
+        
+        <!-- Producto 11 -->
+        <div class="product-card">
+            <img src="fotos/image11.jpg" alt="Colección Completa" class="product-image">
+            <div class="product-info">
+                <div class="product-title">Cartera Negra G Original</div>
+                <div class="product-description">Consultá por stock y elegí tu favorita. Todos los estilos para vos.</div>
+                <p class="price">Desde $39.999</p>
+                <a href="https://wa.me/5493812213452?text=Hola!%20Quiero%20ver%20todos%20los%20modelos%20disponibles" class="contact-btn">Consultar por WhatsApp</a>
+            </div>
+        </div>
+        
+        <!-- Producto 12 -->
+        <div class="product-card">
+            <img src="fotos/image12.jpg" alt="Cartera Marron G Original" class="product-image">
+            <div class="product-info">
+                <div class="product-title">Cartera Marron G Original</div>
+                <div class="product-description">Cartera negra con textura granulada y cierre superior. Espaciosa y elegante, perfecta para mamá.</div>
+                <p class="price">$16500</p>
+                <a href="https://wa.me/5493812213452?text=Hola!%20Me%20interesa%20la%20Cartera%20Negra%20Premium" class="contact-btn">Consultar por WhatsApp</a>
+            </div>
+        </div>
+        <!-- Producto 13 -->
+        <div class="product-card">
+            <img src="fotos/image13.jpg" alt="Cartera I-RUN Negra Texturada" class="product-image">
+            <div class="product-info">
+                <div class="product-title">Cartera I-RUN Premium</div>
+                <div class="product-description">Cartera negra con textura granulada y cierre superior. Espaciosa y elegante, perfecta para mamá.</div>
+                <p class="price">$16500</p>
+                <a href="https://wa.me/5493812213452?text=Hola!%20Me%20interesa%20la%20Cartera%20Negra%20Premium" class="contact-btn">Consultar por WhatsApp</a>
+            </div>
+        </div>
+        <!-- Producto 14 -->
+        <div class="product-card">
+            <img src="fotos/image14.jpg" alt="Cartera Color Paste" class="product-image">
+            <div class="product-info">
+                <div class="product-title">Cartera Pastel Premium</div>
+                <div class="product-description">Cartera elegante, perfecta para mamá.</div>
+                <p class="price">$16500</p>
+                <a href="https://wa.me/5493812213452?text=Hola!%20Me%20interesa%20la%20Cartera%20Negra%20Premium" class="contact-btn">Consultar por WhatsApp</a>
+            </div>
+        </div>
+        <!-- Producto 15 -->
+        <div class="product-card">
+            <img src="fotos/image15.jpg" alt="Cartera Negra Texturada" class="product-image">
+            <div class="product-info">
+                <div class="product-title">Cartera Negra Premium</div>
+                <div class="product-description">Cartera negra con textura granulada y cierre superior. Espaciosa y elegante, perfecta para mamá.</div>
+                <p class="price">$16500</p>
+                <a href="https://wa.me/5493812213452?text=Hola!%20Me%20interesa%20la%20Cartera%20Negra%20Premium" class="contact-btn">Consultar por WhatsApp</a>
+            </div>
+        </div>
+        <!-- Producto 16 -->
+        <div class="product-card">
+            <img src="fotos/image16.jpg" alt="Cartera Negra Texturada" class="product-image">
+            <div class="product-info">
+                <div class="product-title">Cartera Roja </div>
+                <div class="product-description">Cartera roja con textura granulada y cierre superior pequeña.</div>
+                <p class="price">$15.999</p>
+                <a href="https://wa.me/5493812213452?text=Hola!%20Me%20interesa%20la%20Cartera%20Negra%20Premium" class="contact-btn">Consultar por WhatsApp</a>
+            </div>
+        </div>
+        <!-- Producto 17 -->
+        <div class="product-card">
+            <img src="fotos/image17.jpg" alt="Cartera Negra Texturada" class="product-image">
+            <div class="product-info">
+                <div class="product-title">Cartera Negra y Gris Premium Marca V Original</div>
+                <div class="product-description">Cartera ideal para salir, Espaciosa y elegante, perfecta para lucirte como mereces.</div>
+                <p class="price">$16500</p>
+                <a href="https://wa.me/5493812213452?text=Hola!%20Me%20interesa%20la%20Cartera%20Negra%20Premium" class="contact-btn">Consultar por WhatsApp</a>
+            </div>
+        </div>
+        <!-- Producto 18 -->
+        <div class="product-card">
+            <img src="fotos/image18.jpg" alt="Cartera Negra Texturada" class="product-image">
+            <div class="product-info">
+                <div class="product-title">Cartera Blanca pequeña</div>
+                <div class="product-description">Ideal para las fiestas y eventos.</div>
+                <p class="price">$16500</p>
+                <a href="https://wa.me/5493812213452?text=Hola!%20Me%20interesa%20la%20Cartera%20Negra%20Premium" class="contact-btn">Consultar por WhatsApp</a>
+            </div>
+        </div>
+        <!-- Producto 19 -->
+        <div class="product-card">
+            <img src="fotos/image19.jpg" alt="Conjunto de carteras" class="product-image">
+            <div class="product-info">
+                <div class="product-title">Conjuntos de carteras premium</div>
+                <div class="product-description">Consulta sobre nuestros productos y stock con total seguridad.</div>
+                <p class="price">$16500</p>
+                <a href="https://wa.me/5493812213452?text=Hola!%20Me%20interesa%20la%20Cartera%20Negra%20Premium" class="contact-btn">Consultar por WhatsApp</a>
+            </div>
+        </div>
+        <!-- Producto 20 -->
+        <div class="product-card">
+            <img src="fotos/image20.jpg" alt="Cartera G Texturada" class="product-image">
+            <div class="product-info">
+                <div class="product-title">Cartera G Premium</div>
+                <div class="product-description">Textura elegante y cierre superior. Espaciosa y de buen gusto, perfecta para mamá.</div>
+                <p class="price">$16500</p>
+                <a href="https://wa.me/5493812213452?text=Hola!%20Me%20interesa%20la%20Cartera%20Negra%20Premium" class="contact-btn">Consultar por WhatsApp</a>
+            </div>
+        </div>
+
+    </div>
+    
+    <div class="footer">
+        <h3>📱 Contacto</h3>
+        <p>Envíos a todo el país</p>
+        <p>Todos los medios de pago</p>
+        <p><strong>Consultá por fotos y precios!</strong></p>
+    </div>
+</body>
+</html>
