@@ -3,243 +3,749 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Carteras Elegantes - Envíos a Todo el País</title>
-    <meta name="description" content="Catálogo de carteras elegantes y modernas. Marcas: Ardilla Roja, I-Run, G Original. Envíos a todo el país. Todos los medios de pago.">
-    <meta name="keywords" content="carteras, bolsos, moda, accesorios, compras online, ardilla roja, i-run, g original">
+    <title>Date el Gusto - Carteras</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background-color: #ffffff;
+            color: #000;
+        }
+
+        .top-bar {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 12px;
+            font-size: 13px;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            cursor: pointer;
+            z-index: 1000;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+        /*HEADER*/
+        .header {
+            background: linear-gradient(135deg, #e2abb8 0%, #f7efe3 50%, #faedb6 100%);
+            box-shadow: 0 4px 22px rgba(0,0,0,0.08);
+            background-position: center;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 50px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header::before {
+         background: linear-gradient(135deg, 
+            rgba(255, 250, 245, 0.97) 0%, 
+            rgba(255, 243, 235, 0.95) 50%, 
+            rgba(255, 248, 242, 0.97) 100%);
+         backdrop-filter: blur(8px);
+         box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+         z-index: 1;
+        }
+
+        .header-content {
+         max-width: 1400px;
+         margin: 0 auto;
+         padding: 0 40px;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         position: relative;
+         z-index: 2;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: 8px;
+            color: #000;
+        }
+            .nav-menu {
+            display: flex;
+            gap: 45px;
+            align-items: center;
+        }
+        /*NAVEGADOR*/
+        .nav-menu {
+            display: flex;
+            gap: 45px;
+            align-items: center;
+            
+        }
+
+        .nav-menu a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-size: 25px;
+            font-weight: 400;
+            font-family: 'Lora', serif;
+            letter-spacing: 0.8px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(90deg, #1a1a1a 0%, transparent 100%);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #000;
+            letter-spacing: 1.5px;
+        }
+
+        .nav-menu a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+
+        .header-icons {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+        .icon {
+            font-size: 20px;
+            cursor: pointer;
+            color: #000;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .filter-btn {
+            border: 1px solid #ddd;
+            background: #fff;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-btn:hover {
+            background: #f9f9f9;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .product-card {
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background-color: #f5f5f5;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-name {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        .product-price {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 5px;
+        }
+
+        .product-tax {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .notification-popup {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            z-index: 1000;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .notification-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .notification-text {
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .notification-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn-secondary {
+            padding: 10px 25px;
+            background: #fff;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .btn-primary {
+            padding: 10px 25px;
+            background: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .btn-primary:hover {
+            background: #0056b3;
+        }
+
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .gallery-content {
+            position: relative;
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 40px;
+        }
+
+        .close-gallery {
+            position: absolute;
+            top: 10px;
+            right: 205px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-gallery:hover {
+            color: #ccc;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s;
+            border-radius: 8px;
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.05);
+        }
+         /*FOOTER STYLO*/
+         .footer {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: #fff;
+    padding: 80px 20px 30px;
+    margin-top: 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(197, 157, 55, 0.5), transparent);
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+    margin-bottom: 50px;
+}
+
+.footer-section h3 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+.footer-section p {
+    font-size: 18px;
+    line-height: 1.9;
+    color: #e0e0e0;
+    margin-bottom: 15px;
+    font-weight: 300;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    color: #e0e0e0;
+    font-size: 17px;
+    font-weight: 300;
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: translateX(5px);
+    color: #fff;
+}
+
+.contact-item a {
+    color: #e0e0e0;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-size: 17px;
+}
+
+.contact-item a:hover {
+    color: #c59d37;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.social-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 22px;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(10px);
+}
+
+.social-icon:hover {
+    transform: translateY(-5px) scale(1.1);
+    background: rgba(197, 157, 55, 0.2);
+    border-color: #c59d37;
+    box-shadow: 0 8px 20px rgba(197, 157, 55, 0.3);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #b0b0b0;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .footer-section h3 {
+        font-size: 24px;
+    }
+    
+    .footer-section p,
+    .contact-item,
+    .contact-item a {
+        font-size: 16px;
+    }
+}
+        
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 26px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Playfair Display', 'Georgia', serif;
         }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
-                        url('https://images.unsplash.com/photo-1557683316-973673baf926?w=1600') center/cover fixed;
-            padding: 20px;
-            min-height: 100vh;
-        }
-        
-        /* HEADER CON TÍTULO ANIMADO */
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-            padding: 30px 20px;
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 50px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            border: 2px solid rgba(200, 180, 150, 0.2);
-            backdrop-filter: blur(10px);
-        }
-
-        .title-container {
-            position: relative;
-            height: 80px;
-            margin-bottom: -50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .title-1, .title-2 {
-            font-size: 2.8em;
-            font-weight: bold;
-            text-align: center;
-            margin: 0;
-            position: absolute;
+        /* galeria elegante */
+        .elegant-gallery {
             width: 100%;
-        }
-
-        .title-1 {
-            color: #d35400;
-            text-shadow: 2px 2px 0px #e67e22, 
-                         4px 4px 0px rgba(0,0,0,0.2);
-            animation: title1Animation 6s infinite;
-        }
-
-        .title-2 {
-            color: #0f60b1;
-            text-shadow: 2px 2px 0px #34495e, 
-                         4px 4px 0px rgba(0,0,0,0.2);
-            animation: title2Animation 6s infinite;
-        }
-
-        @keyframes title1Animation {
-            0%, 50% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-            55%, 100% {
-                opacity: 0;
-                transform: translateY(-20px) scale(0.95);
-            }
-        }
-
-        @keyframes title2Animation {
-            0%, 50% {
-                opacity: 0;
-                transform: translateY(20px) scale(0.95);
-            }
-            55%, 100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .subtitle {
-            font-size: 1.3em;
-            color: #6d4c41;
-            font-style: italic;
-            margin-top: 70px;
-            text-align: center;
-            font-weight: 300;
-        }
-
-        /* FILTROS */
-        .filters {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            padding: 0 10px;
-        }
-
-        .filter-btn {
-            padding: 12px 20px;
-            background: rgba(255, 255, 255, 0.95);
-            border: 2px solid #c89b7b;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            color: #8d6e63;
-            font-size: 0.95em;
-        }
-
-        .filter-btn:hover,
-        .filter-btn.active {
-            background: #c89b7b;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(200, 155, 123, 0.3);
-        }
-
-        /* CATÁLOGO */
-        .catalog {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 10px;
-        }
-        
-        .product-card {
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 20px;
+            height: 60vh;
+            min-height: 700px;
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid transparent;
-            background-clip: padding-box;
+            background: linear-gradient(135deg, #f3eaea 0%, #e4e8f0 100%);
+            padding-top: 60px;
+        }
+
+        .gallery-slides {
+            width: 100;
+            height: 100%;
             position: relative;
         }
-        
-        .product-card::before {
-            content: '';
+
+        .slide {
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: 20px;
-            padding: 2px;
-            background: linear-gradient(135deg, #d4af37, #c89b7b, #8d6e63);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
+            width: 100%;
+            height: 100%;
             opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        
-        .product-card:hover::before {
-            opacity: 1;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-        
-        .product-image {
-            width: 100%;
-            height: 280px;
-            object-fit: cover;
-            border-bottom: 2px solid #f0f0f0;
-            transition: transform 0.4s ease;
-            background: #f5f5f5;
-        }
-        
-        .product-card:hover .product-image {
-            transform: scale(1.05);
-        }
-        
-        .product-info {
-            padding: 20px;
-            background: linear-gradient(to bottom, rgba(255,255,255,1), rgba(252,248,245,1));
-        }
-        
-        .product-title {
-            font-size: 1.3em;
-            font-weight: 700;
-            color: #4a4a4a;
-            margin-bottom: 10px;
-            line-height: 1.3;
-        }
-        
-        .product-description {
-            color: #666;
-            margin-bottom: 15px;
-            line-height: 1.5;
-            font-size: 0.9em;
-        }
-        
-        .price {
-            font-size: 1.8em;
-            font-weight: 700;
-            background: linear-gradient(135deg, #c89b7b 0%, #8d6e63 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
-        }
-        
-        .contact-btn {
-            display: inline-block;
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #25D366 0%, #20ba5a 100%);
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
-            border: none;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 1em;
-        }
-        
-        .contact-btn:hover {
-            background: linear-gradient(135deg, #20ba5a 0%, #1a9e4d 100%);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-            transform: translateY(-2px);
+            transition: opacity 1.2s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10%;
         }
 
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide-image {
+            width: 100%;
+            height: 100%;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 2;
+        }
+
+        .slide-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s ease;
+        }
+
+        .slide.active .slide-image img {
+            transform: scale(1.05);
+        }
+
+        .slide-content {
+            width: 45%;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            margin-left: -50px;
+            z-index: 3;
+            position: relative;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .slide-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .slide-description {
+            font-size: 1.1rem;
+            color: #5d6d7e;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .slide-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #8e44ad;
+            margin-bottom: 25px;
+        }
+
+        .shop-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(142, 68, 173, 0.3);
+        }
+
+        .shop-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(142, 68, 173, 0.4);
+        }
+
+        .gallery-nav {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+
+        .nav-dots {
+            display: flex;
+            gap: 12px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: white;
+            transform: scale(1.3);
+        }
+
+        .nav-arrows {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 30px;
+            z-index: 10;
+        }
+
+        .arrow {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+            color: #2c3e50;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .arrow:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        .gallery-counter {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.4);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            z-index: 10;
+        }
+
+        /* Efectos decorativos */
+        .decorative-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(142, 68, 173, 0.1) 0%, rgba(155, 89, 182, 0.05) 100%);
+            z-index: 1;
+        }
+
+        .circle-1 {
+            width: 200px;
+            height: 200px;
+            top: -50px;
+            left: -50px;
+        }
+
+        .circle-2 {
+            width: 150px;
+            height: 150px;
+            bottom: 50px;
+            right: 100px;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .slide {
+                flex-direction: column;
+                padding: 5%;
+            }
+            
+            .slide-image, .slide-content {
+                width: 90%;
+                margin: 0;
+            }
+            
+            .slide-content {
+                margin-top: -50px;
+            }
+            
+            .slide-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .elegant-gallery {
+                height: 80vh;
+            }
+            
+            .slide-title {
+                font-size: 1.5rem;
+            }
+            
+            .slide-description {
+                font-size: 1rem;
+            }
+            
+            .slide-price {
+                font-size: 1.5rem;
+            }
+            
+            .arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
         /* WHATSAPP FLOTANTE */
         .whatsapp-floating {
             position: fixed;
@@ -269,520 +775,188 @@
             100% { transform: scale(1); }
         }
 
-        /* FOOTER MEJORADO */
-        .footer {
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            margin-top: 60px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border: 2px solid rgba(200, 155, 123, 0.2);
-        }
-
-        .footer-title {
-            font-size: 2em;
-            background: linear-gradient(135deg, #c89b7b, #8d6e63);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 30px;
-            font-weight: 600;
-        }
-
-        .contact-horizontal {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 20px;
-            background: rgba(255,255,255,0.9);
-            border-radius: 15px;
-            border: 2px solid rgba(200, 155, 123, 0.1);
-            transition: all 0.3s ease;
-            min-width: 250px;
-        }
-
-        .contact-item:hover {
-            transform: translateY(-5px);
-            border-color: #c89b7b;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-
-        .contact-icon {
-            font-size: 2em;
-            width: 50px;
-            text-align: center;
-        }
-
-        .contact-details h4 {
-            font-size: 1.2em;
-            color: #5d4037;
-            margin-bottom: 8px;
-        }
-
-        .contact-details p {
-            font-size: 1em;
-            color: #8d6e63;
-            margin: 0;
-        }
-
-        .whatsapp-numbers {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .whatsapp-numbers a {
-            color: #8d6e63;
-            text-decoration: none;
-            font-size: 0.95em;
-            transition: all 0.3s ease;
-            padding: 6px 10px;
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(200, 155, 123, 0.2);
-        }
-
-        .whatsapp-numbers a:hover {
-            color: #25D366;
-            transform: scale(1.03);
-            background: rgba(37, 211, 102, 0.1);
-            border-color: #25D366;
-        }
-
-        .services-horizontal {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-
-        .service-item {
-            padding: 12px 20px;
-            background: rgba(255,255,255,0.8);
-            border-radius: 15px;
-            font-size: 1em;
-            color: #6d4c41;
-            border: 2px solid rgba(200, 155, 123, 0.2);
-        }
-
-        .brand-motto {
-            font-size: 1.2em;
-            color: #8d6e63;
-            font-weight: 500;
-            margin-top: 20px;
-        }
-
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 1200px) {
-            .catalog {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-                gap: 20px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            body {
-                padding: 15px;
-            }
-            
-            .header {
-                padding: 20px 15px;
-                margin-bottom: 30px;
-            }
-            
-            .title-1, .title-2 {
-                font-size: 2em;
-            }
-            
-            .title-container {
-                height: 60px;
-            }
-            
-            .subtitle {
-                font-size: 1.1em;
-                margin-top: 60px;
-            }
-            
-            .filters {
-                gap: 8px;
-                margin-bottom: 25px;
-            }
-            
-            .filter-btn {
-                padding: 10px 16px;
-                font-size: 0.85em;
-            }
-            
-            .catalog {
-                grid-template-columns: 1fr;
-                gap: 20px;
-                padding: 0 5px;
-            }
-            
-            .product-image {
-                height: 250px;
-            }
-            
-            .product-info {
-                padding: 18px;
-            }
-            
-            .contact-horizontal {
-                gap: 15px;
-                margin-bottom: 25px;
-            }
-            
-            .contact-item {
-                padding: 15px;
-                min-width: 200px;
-                flex-direction: column;
-                text-align: center;
-                gap: 10px;
-            }
-            
-            .services-horizontal {
-                gap: 10px;
-            }
-            
-            .service-item {
-                padding: 10px 15px;
-                font-size: 0.9em;
-            }
-            
-            .whatsapp-floating {
-                bottom: 15px;
-                right: 15px;
-                left: 15px;
-                text-align: center;
-                padding: 12px 15px;
-            }
-            
-            .footer {
-                padding: 30px 20px;
-                margin-top: 40px;
-            }
-            
-            .footer-title {
-                font-size: 1.6em;
-                margin-bottom: 25px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .title-1, .title-2 {
-                font-size: 1.6em;
-            }
-            
-            .title-container {
-                height: 50px;
-            }
-            
-            .contact-horizontal {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .contact-item {
-                width: 100%;
-                max-width: 280px;
-            }
-            
-            .services-horizontal {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .service-item {
-                width: 100%;
-                max-width: 250px;
-            }
-            
-            .filters {
-                justify-content: space-between;
-            }
-            
-            .filter-btn {
-                flex: 1;
-                min-width: auto;
-                margin: 2px;
-            }
-        }
     </style>
 </head>
 <body>
     <!-- WhatsApp Flotante -->
     <div class="whatsapp-floating">
-        <a href="https://wa.me/5493812213452" target="_blank">
+        <a href="https://wa.me/5493814784612" target="_blank">
             📱 ¡Consultá por WhatsApp!
         </a>
     </div>
 
-    <!-- Header con Título Animado -->
-    <div class="header">
-        <div class="title-container">
-            <h1 class="title-1">DALE EL GUSTO</h1>
-            <h1 class="title-2">CATÁLOGO DE CARTERAS</h1>
-        </div>
-        <p class="subtitle">Elegancia y estilo para cada ocasión</p>
-    </div>
 
-    <!-- Filtros -->
-    <div class="filters">
-        <button class="filter-btn active" data-filter="all">Todas</button>
-        <button class="filter-btn" data-filter="ardilla">Ardilla Roja</button>
-        <button class="filter-btn" data-filter="irun">I-Run</button>
-        <button class="filter-btn" data-filter="goriginal">G Original</button>
-        <button class="filter-btn" data-filter="premium">Premium</button>
-    </div>
-    <!-- Catálogo de Productos -->
-    <div class="catalog">
-        <!-- Producto 1 -->
-        <div class="product-card" data-category="ardilla">
-            <img src="fotos/image1.jpg" alt="Cartera Bandolera Marrón Ardilla Roja" class="product-image">
-            <div class="product-info">
-                <div class="product-title">Cartera Bandolera Marrón</div>
-                <div class="product-description">Elegante cartera Ardilla Roja en tono marrón con textura grabada. Incluye correa ajustable con logo. Perfecta para salir.</div>
-                <p class="price">$39.999</p>
-                <button class="contact-btn" data-product="Cartera Bandolera Marrón" data-price="$39.999">Consultar por WhatsApp</button>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">DATE EL GUSTO</div>
+            <nav class="nav-menu">
+                <a href="#">CATALOGO DE CARTERAS</a>
+                
+            </nav>
+            <div class="header-icons">
+                
             </div>
         </div>
-        
-        <!-- Producto 2 -->
-        <div class="product-card" data-category="ardilla">
-            <img src="fotos/image2.jpg" alt="Cartera Negra Ardilla Roja" class="product-image">
-            <div class="product-info">
-                <div class="product-title">Cartera Negra Ardilla Roja</div>
-                <div class="product-description">Cartera Ardilla Roja negra con múltiples compartimentos y cierres dorados. Ideal para mamá, espaciosa y funcional.</div>
-                <p class="price">$39.999</p>
-                <button class="contact-btn" data-product="Cartera Negra Ardilla Roja" data-price="$39.999">Consultar por WhatsApp</button>
-            </div>
-        </div>
-        
-        <!-- Producto 3 -->
-        <div class="product-card" data-category="ardilla">
-            <img src="fotos/image3.jpg" alt="Cartera Blanca Ardilla Roja" class="product-image">
-            <div class="product-info">
-                <div class="product-title">Cartera Blanca Ardilla Roja</div>
-                <div class="product-description">Modelo elegante blanca. Diseño moderno con cierre frontal. Perfecta para el día a día.</div>
-                <p class="price">$39.999</p>
-                <button class="contact-btn" data-product="Cartera Blanca Ardilla Roja" data-price="$39.999">Consultar por WhatsApp</button>
-            </div>
-        </div>
-        
-        <!-- Producto 4 -->
-        <div class="product-card" data-category="irun">
-            <img src="fotos/image4.jpg" alt="Cartera Elegante Plateada I-Run" class="product-image">
-            <div class="product-info">
-                <div class="product-title">Cartera Elegante Plateada</div>
-                <div class="product-description">Hermosa cartera I-Run en tono gris metalizado con acabado brillante. Compacta y sofisticada para eventos especiales.</div>
-                <p class="price">$35.099</p>
-                <button class="contact-btn" data-product="Cartera Elegante Plateada I-Run" data-price="$35.099">Consultar por WhatsApp</button>
-            </div>
-        </div>
-        
-        <!-- Producto 5 -->
-        <div class="product-card" data-category="ardilla">
-            <img src="fotos/image6.jpg" alt="Cartera Rosa Ardilla Roja" class="product-image">
-            <div class="product-info">
-                <div class="product-title">Cartera Rosa Ardilla Roja</div>
-                <div class="product-description">Cartera con diseño redondeado y múltiples cierres. Ideal para salir de noche.</div>
-                <p class="price">$39.999</p>
-                <button class="contact-btn" data-product="Cartera Rosa Ardilla Roja" data-price="$39.999">Consultar por WhatsApp</button>
-            </div>
-        </div>
-        
-        <!-- Producto 6 -->
-        <div class="product-card" data-category="ardilla">
-            <img src="fotos/image7.jpg" alt="Cartera Ardilla Roja Marrón" class="product-image">
-            <div class="product-info">
-                <div class="product-title">Cartera Ardilla Roja Marrón</div>
-                <div class="product-description">Cartera elegante, versátil y moderna para uso diario.</div>
-                <p class="price">$39.999</p>
-                <button class="contact-btn" data-product="Cartera Ardilla Roja Marrón" data-price="$39.999">Consultar por WhatsApp</button>
-            </div>
-        </div>
-        
-        <!-- Producto 7 -->
-        <div class="product-card" data-category="premium">
-            <img src="fotos/image8.jpg" alt="Cartera Negra Nocturna" class="product-image">
-            <div class="product-info">
-                <div class="product-title">Cartera Negra Nocturna</div>
-                <div class="product-description">Cartera con elegante textura y diseño perfecto para cualquier ocasión.</div>
-                <p class="price">$35.099</p>
-                <button class="contact-btn" data-product="Cartera Negra Nocturna" data-price="$35.099">Consultar por WhatsApp</button>
-            </div>
-        </div>
-        
-        <!-- Producto 8 -->
-        <div class="product-card" data-category="premium">
-            <img src="fotos/image9.jpg" alt="Cartera Elegante Estilo Rosa Pastel" class="product-image">
-            <div class="product-info">
-                <div class="product-title">Cartera Elegante Estilo Rosa Pastel</div>
-                <div class="product-description">Sofisticada cartera perfecta para eventos y salidas especiales.</div>
-                <p class="price">$35.099</p>
-                <button class="contact-btn" data-product="Cartera Elegante Estilo Rosa Pastel" data-price="$35.099">Consultar por WhatsApp</button>
-            </div>
-        </div>
-        
-        <!-- Producto 9 -->
-        <div class="product-card" data-category="goriginal">
-            <img src="fotos/image12.jpg" alt="Cartera Marrón G Original" class="product-image">
-            <div class="product-info">
-                <div class="product-title">Cartera Marrón G Original</div>
-                <div class="product-description">Cartera negra con textura granulada y cierre superior. Espaciosa y elegante, perfecta para mamá.</div>
-                <p class="price">$35.099</p>
-                <button class="contact-btn" data-product="Cartera Marrón G Original" data-price="$35.099">Consultar por WhatsApp</button>
-            </div>
-        </div>
+    </header>
 
-        <!-- Producto 10 -->
-        <div class="product-card" data-category="premium">
-            <img src="fotos/image14.jpg" alt="Cartera Pastel Premium" class="product-image">
-            <div class="product-info">
-                <div class="product-title">Cartera Pastel Premium</div>
-                <div class="product-description">Cartera elegante, perfecta para mamá.</div>
-                <p class="price">$35.099</p>
-                <button class="contact-btn" data-product="Cartera Pastel Premium" data-price="$35.099">Consultar por WhatsApp</button>
-            </div>
-        </div>
-
-        <!-- Producto 11 -->
-        <div class="product-card" data-category="premium">
-            <img src="fotos/image16.jpg" alt="Cartera Roja Pequeña" class="product-image">
-            <div class="product-info">
-                <div class="product-title">Cartera Roja Pequeña</div>
-                <div class="product-description">Cartera roja con textura granulada y cierre superior pequeña.</div>
-                <p class="price">$15.999</p>
-                <button class="contact-btn" data-product="Cartera Roja Pequeña" data-price="$15.999">Consultar por WhatsApp</button>
-            </div>
-        </div>
-
-        <!-- Producto 12 -->
-        <div class="product-card" data-category="goriginal">
-            <img src="fotos/image17.jpg" alt="Cartera Negra y Gris V Original" class="product-image">
-            <div class="product-info">
-                <div class="product-title">Cartera Negra y Gris V Original</div>
-                <div class="product-description">Cartera ideal para salir, Espaciosa y elegante, perfecta para lucirte como mereces.</div>
-                <p class="price">$17.999</p>
-                <button class="contact-btn" data-product="Cartera Negra y Gris V Original" data-price="$17.999">Consultar por WhatsApp</button>
-            </div>
-        </div>
-
-        <!-- Producto 13 -->
-        <div class="product-card" data-category="premium">
-            <img src="fotos/image18.jpg" alt="Cartera Blanca Pequeña" class="product-image">
-            <div class="product-info">
-                <div class="product-title">Cartera Blanca Pequeña</div>
-                <div class="product-description">Ideal para las fiestas y eventos.</div>
-                <p class="price">$15.999</p>
-                <button class="contact-btn" data-product="Cartera Blanca Pequeña" data-price="$15.999">Consultar por WhatsApp</button>
-            </div>
-        </div>
-
-        <!-- Producto 14 -->
-        <div class="product-card" data-category="premium">
-            <img src="fotos/image19.jpg" alt="Conjuntos de Carteras Premium" class="product-image">
-            <div class="product-info">
-                <div class="product-title">Conjuntos de Carteras Premium</div>
-                <div class="product-description">Consulta sobre nuestros productos y stock con total seguridad.</div>
-                <p class="price">Consultar</p>
-                <button class="contact-btn" data-product="Conjuntos de Carteras Premium" data-price="Consultar">Consultar por WhatsApp</button>
-            </div>
-        </div>
-    </div>
-    <!-- Footer Mejorado-->
-    <div class="footer">
-        <h3 class="footer-title">✨ Contáctanos ✨</h3>
+   <div class="elegant-gallery">
+        <div class="decorative-circle circle-1"></div>
+        <div class="decorative-circle circle-2"></div>
         
-        <div class="contact-horizontal">
-            <div class="contact-item">
-                <div class="contact-icon">💚</div>
-                <div class="contact-details">
-                    <h4>WhatsApp</h4>
-                    <div class="whatsapp-numbers">
-                        <a href="https://wa.me/5493812213452" target="_blank">+54 9 381 221-3452</a>
-                        <a href="https://wa.me/5492975178203" target="_blank">+54 9 297 517-8203</a>
-                        <a href="https://wa.me/5493814784612" target="_blank">+54 9 381 478-4612</a>
+        <div class="gallery-slides">
+            <!-- Las diapositivas se generarán con JavaScript -->
+        </div>
+        
+        <div class="nav-arrows">
+            <div class="arrow prev-arrow">&#10094;</div>
+            <div class="arrow next-arrow">&#10095;</div>
+        </div>
+        
+        <div class="gallery-nav">
+            <div class="nav-dots">
+                <!-- Los puntos de navegación se generarán con JavaScript -->
+            </div>
+        </div>
+        
+        <div class="gallery-counter">
+            <span class="current-slide">1</span> / <span class="total-slides">5</span>
+        </div>
+        
+        <script>
+        // Datos de las carteras (solo imágenes)
+        const wallets = [
+            {
+                id: 1,
+                image: "foto/image.png"
+            },
+            {
+                id: 2,
+                image: "foto/image2.png"
+            },
+            {
+                id: 3,
+                image: "foto/image3.png"
+            },
+            {
+                id: 4,
+                image: "foto/image4.png"
+            }
+            
+            
+        ];
+
+        // Variables para el control de la galería
+        let currentSlide = 0;
+        let autoplayInterval;
+        const slidesContainer = document.querySelector('.gallery-slides');
+        const dotsContainer = document.querySelector('.nav-dots');
+        const prevArrow = document.querySelector('.prev-arrow');
+        const nextArrow = document.querySelector('.next-arrow');
+        const currentSlideElement = document.querySelector('.current-slide');
+        const totalSlidesElement = document.querySelector('.total-slides');
+
+        // Función para inicializar la galería
+        function initGallery() {
+            // Crear las diapositivas
+            wallets.forEach((wallet, index) => {
+                const slide = document.createElement('div');
+                slide.className = `slide ${index === 0 ? 'active' : ''}`;
+                slide.innerHTML = `
+                    <div class="slide-image">
+                        <img src="${wallet.image}" alt="Cartera ${wallet.id}">
                     </div>
-                </div>
-            </div>
-            
-            <div class="contact-item">
-                <div class="contact-icon">📷</div>
-                <div class="contact-details">
-                    <h4>Instagram</h4>
-                    <p>@CarterasElegantes</p>
-                </div>
-            </div>
-            
-            <div class="contact-item">
-                <div class="contact-icon">🔵</div>
-                <div class="contact-details">
-                    <h4>Facebook</h4>
-                    <p>/CarterasElegantesOficial</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="services-horizontal">
-            <div class="service-item">🚚 Envíos a todo el país</div>
-            <div class="service-item">💳 Todos los medios de pago</div>
-            <div class="service-item">⭐ Productos originales</div>
-        </div>
-
-        <p class="brand-motto">Elegancia y Estilo en Cada Detalle</p>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // 1. Manejo de imágenes rotas
-            const images = document.querySelectorAll('.product-image');
-            images.forEach(img => {
-                img.onerror = function() {
-                    this.src = 'https://via.placeholder.com/320x320/f5f5f5/666666?text=Imagen+No+Disponible';
-                    this.alt = 'Imagen no disponible';
-                };
-            });
-
-            // 2. Sistema de filtros
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const productCards = document.querySelectorAll('.product-card');
-
-            filterButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const filter = this.getAttribute('data-filter');
-                    
-                    productCards.forEach(card => {
-                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                            card.style.display = 'block';
-                            setTimeout(() => {
-                                card.style.opacity = '1';
-                                card.style.transform = 'scale(1)';
-                            }, 50);
-                        } else {
-                            card.style.opacity = '0';
-                            card.style.transform = 'scale(0.8)';
-                            setTimeout(() => {
-                                card.style.display = 'none';
-                            }, 300);
-                        }
-                    });
+                `;
+                slidesContainer.appendChild(slide);
+                
+                // Crear puntos de navegación
+                const dot = document.createElement('div');
+                dot.className = `dot ${index === 0 ? 'active' : ''}`;
+                dot.dataset.index = index;
+                dotsContainer.appendChild(dot);
+                
+                // Añadir evento click a los puntos
+                dot.addEventListener('click', () => {
+                    goToSlide(index);
                 });
             });
+            
+            // Actualizar contador
+            totalSlidesElement.textContent = wallets.length;
+            
+            // Añadir eventos a las flechas de navegación
+            prevArrow.addEventListener('click', prevSlide);
+            nextArrow.addEventListener('click', nextSlide);
+            
+            // Iniciar autoplay (cada 15 segundos)
+            startAutoplay();
+        }
 
-            // 3. Mensajes de WhatsApp dinámicos
+        // Función para ir a una diapositiva específica
+        function goToSlide(slideIndex) {
+            // Remover clase active de la diapositiva actual
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Remover clase active de los puntos
+            document.querySelectorAll('.dot').forEach(dot => {
+                dot.classList.remove('active');
+            });
+            
+            // Actualizar índice actual
+            currentSlide = slideIndex;
+            
+            // Añadir clase active a la nueva diapositiva
+            document.querySelectorAll('.slide')[currentSlide].classList.add('active');
+            document.querySelectorAll('.dot')[currentSlide].classList.add('active');
+            
+            // Actualizar contador
+            currentSlideElement.textContent = currentSlide + 1;
+            
+            // Reiniciar autoplay
+            resetAutoplay();
+        }
+
+        // Función para ir a la diapositiva anterior
+        function prevSlide() {
+            const newIndex = (currentSlide - 1 + wallets.length) % wallets.length;
+            goToSlide(newIndex);
+        }
+
+        // Función para ir a la siguiente diapositiva
+        function nextSlide() {
+            const newIndex = (currentSlide + 1) % wallets.length;
+            goToSlide(newIndex);
+        }
+
+        // Función para iniciar autoplay
+        function startAutoplay() {
+            autoplayInterval = setInterval(nextSlide, 15000); // Cambia cada 15 segundos
+        }
+
+        // Función para detener autoplay
+        function stopAutoplay() {
+            clearInterval(autoplayInterval);
+        }
+
+        // Función para reiniciar autoplay
+        function resetAutoplay() {
+            stopAutoplay();
+            startAutoplay();
+        }
+
+        // Pausar autoplay al interactuar con la galería
+        slidesContainer.addEventListener('mouseenter', stopAutoplay);
+        slidesContainer.addEventListener('mouseleave', startAutoplay);
+        prevArrow.addEventListener('mouseenter', stopAutoplay);
+        nextArrow.addEventListener('mouseenter', stopAutoplay);
+        dotsContainer.addEventListener('mouseenter', stopAutoplay);
+        dotsContainer.addEventListener('mouseleave', startAutoplay);
+
+        // Inicializar la galería cuando se carga la página
+        document.addEventListener('DOMContentLoaded', initGallery);
+        
+        // 3. Mensajes de WhatsApp dinámicos
             const contactButtons = document.querySelectorAll('.contact-btn');
             
             contactButtons.forEach(button => {
@@ -796,28 +970,1012 @@
                     window.open(whatsappUrl, '_blank');
                 });
             });
+// 4.  Foter Animacion
+    // ========== EFECTO DE OLAS ANIMADAS EN EL FONDO ==========
 
-            // 4. Efecto de carga para imágenes
-            images.forEach(img => {
-                if (img.complete) {
-                    img.style.background = 'none';
-                } else {
-                    img.addEventListener('load', function() {
-                        this.style.background = 'none';
-                    });
-                }
-            });
+function createWaveEffect() {
+    const footer = document.querySelector('.footer');
+    const canvas = document.createElement('canvas');
+    canvas.style.cssText = `
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        opacity: 0.6;
+    `;
+    footer.insertBefore(canvas, footer.firstChild);
+    
+    const ctx = canvas.getContext('2d');
+    canvas.width = footer.offsetWidth;
+    canvas.height = footer.offsetHeight;
+    
+    let waves = [];
+    for (let i = 0; i < 3; i++) {
+        waves.push({
+            y: canvas.height * 0.5,
+            length: 0.01 + i * 0.001,
+            amplitude: 30 + i * 20,
+            frequency: 0.01 + i * 0.005,
+            phase: i * Math.PI / 2
         });
-
-        // 5. Animación de carga inicial suave
-        window.addEventListener('load', function() {
-            document.body.style.opacity = '0';
-            document.body.style.transition = 'opacity 0.3s ease';
+    }
+    
+    let increment = 0;
+    
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        waves.forEach((wave, index) => {
+            ctx.beginPath();
+            ctx.moveTo(0, canvas.height);
             
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-            }, 100);
+            for (let x = 0; x < canvas.width; x++) {
+                const y = wave.y + Math.sin(x * wave.length + increment + wave.phase) * wave.amplitude;
+                ctx.lineTo(x, y);
+            }
+            
+            ctx.lineTo(canvas.width, canvas.height);
+            ctx.closePath();
+            
+            const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            gradient.addColorStop(0, `rgba(197, 157, 55, ${0.3 - index * 0.1})`);
+            gradient.addColorStop(1, 'rgba(197, 157, 55, 0)');
+            
+            ctx.fillStyle = gradient;
+            ctx.fill();
         });
+        
+        increment += 0.02;
+        requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    window.addEventListener('resize', () => {
+        canvas.width = footer.offsetWidth;
+        canvas.height = footer.offsetHeight;
+    });
+}
+
+// ========== PARTÍCULAS GRANDES Y BRILLANTES ==========
+function createFloatingParticles() {
+    const footer = document.querySelector('.footer');
+    const particleContainer = document.createElement('div');
+    particleContainer.className = 'particles-container';
+    particleContainer.style.cssText = `
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+    `;
+    
+    footer.insertBefore(particleContainer, footer.firstChild);
+    
+    for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        const size = Math.random() * 8 + 4;
+        const startX = Math.random() * 100;
+        const duration = Math.random() * 10 + 15;
+        const delay = Math.random() * 5;
+        
+        particle.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            background: radial-gradient(circle, rgba(197, 157, 55, 1) 0%, rgba(197, 157, 55, 0) 70%);
+            border-radius: 50%;
+            left: ${startX}%;
+            bottom: -20px;
+            filter: blur(1px);
+            box-shadow: 0 0 ${size * 3}px rgba(197, 157, 55, 0.8);
+            animation: floatUp ${duration}s ${delay}s infinite ease-in-out;
+        `;
+        
+        particleContainer.appendChild(particle);
+    }
+}
+
+// ========== ANIMACIONES CSS ==========
+const styleSheet = document.createElement('style');
+styleSheet.textContent = `
+    @keyframes floatUp {
+        0% {
+            transform: translateY(0) translateX(0) rotate(0deg);
+            opacity: 0;
+        }
+        10% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-600px) translateX(${Math.random() * 200 - 100}px) rotate(360deg);
+            opacity: 0;
+        }
+    }
+    
+    @keyframes glow {
+        0%, 100% {
+            box-shadow: 0 0 5px rgba(197, 157, 55, 0.5),
+                        0 0 10px rgba(197, 157, 55, 0.3);
+        }
+        50% {
+            box-shadow: 0 0 20px rgba(197, 157, 55, 0.8),
+                        0 0 30px rgba(197, 157, 55, 0.5),
+                        0 0 40px rgba(197, 157, 55, 0.3);
+        }
+    }
+    
+    @keyframes slideInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-100px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    
+    @keyframes slideInRight {
+        from {
+            opacity: 0;
+            transform: translateX(100px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    
+    @keyframes slideInUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .footer-section {
+        animation: slideInUp 0.8s ease-out forwards;
+        opacity: 0;
+    }
+    
+    .footer-section:nth-child(1) {
+        animation-delay: 0.2s;
+    }
+    
+    .footer-section:nth-child(2) {
+        animation-delay: 0.4s;
+    }
+    
+    .footer-section:nth-child(3) {
+        animation-delay: 0.6s;
+    }
+`;
+document.head.appendChild(styleSheet);
+
+// ========== EFECTO DE BRILLO INTENSO EN ICONOS SOCIALES ==========
+function enhanceSocialIcons() {
+    document.querySelectorAll('.social-icon').forEach((icon, index) => {
+        icon.style.animation = `glow 2s ${index * 0.2}s infinite`;
+        
+        icon.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px) scale(1.3) rotate(360deg)';
+            this.style.boxShadow = `
+                0 0 30px rgba(197, 157, 55, 1),
+                0 0 60px rgba(197, 157, 55, 0.7),
+                0 0 90px rgba(197, 157, 55, 0.4)
+            `;
+            this.style.background = 'rgba(197, 157, 55, 0.5)';
+        });
+        
+        icon.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+            this.style.boxShadow = '';
+            this.style.background = '';
+        });
+    });
+}
+
+// ========== EFECTO EXPLOSIVO EN CONTACTOS ==========
+function addContactEffects() {
+    document.querySelectorAll('.contact-item').forEach(item => {
+        item.addEventListener('mouseenter', function(e) {
+            // Crear múltiples partículas explosivas
+            for (let i = 0; i < 15; i++) {
+                const spark = document.createElement('div');
+                const angle = (Math.PI * 2 * i) / 15;
+                const velocity = 100 + Math.random() * 50;
+                
+                spark.style.cssText = `
+                    position: absolute;
+                    width: 4px;
+                    height: 4px;
+                    background: #c59d37;
+                    border-radius: 50%;
+                    left: 0;
+                    top: 50%;
+                    box-shadow: 0 0 10px #c59d37;
+                    pointer-events: none;
+                    animation: explode${i} 0.8s ease-out forwards;
+                `;
+                
+                const keyframes = `
+                    @keyframes explode${i} {
+                        to {
+                            transform: translate(${Math.cos(angle) * velocity}px, ${Math.sin(angle) * velocity}px);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                
+                const style = document.createElement('style');
+                style.textContent = keyframes;
+                document.head.appendChild(style);
+                
+                this.style.position = 'relative';
+                this.appendChild(spark);
+                
+                setTimeout(() => {
+                    spark.remove();
+                    style.remove();
+                }, 800);
+            }
+            
+            // Efecto de escala y brillo
+            this.style.transform = 'scale(1.15)';
+            this.style.color = '#c59d37';
+            this.style.textShadow = '0 0 20px rgba(197, 157, 55, 0.8)';
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+            this.style.color = '';
+            this.style.textShadow = '';
+        });
+    });
+}
+
+// ========== CURSOR BRILLANTE PERSONALIZADO ==========
+function addGlowingCursor() {
+    const footer = document.querySelector('.footer');
+    const cursor = document.createElement('div');
+    cursor.style.cssText = `
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle, rgba(197, 157, 55, 0.4) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+        transform: translate(-50%, -50%);
+        transition: opacity 0.3s;
+        opacity: 0;
+        filter: blur(20px);
+        z-index: 1;
+    `;
+    
+    footer.appendChild(cursor);
+    
+    footer.addEventListener('mousemove', (e) => {
+        const rect = footer.getBoundingClientRect();
+        cursor.style.left = (e.clientX - rect.left) + 'px';
+        cursor.style.top = (e.clientY - rect.top) + 'px';
+        cursor.style.opacity = '1';
+    });
+    
+    footer.addEventListener('mouseleave', () => {
+        cursor.style.opacity = '0';
+    });
+}
+
+// ========== TÍTULOS CON EFECTO NEÓN ==========
+function addNeonTitles() {
+    document.querySelectorAll('.footer-section h3').forEach((title, index) => {
+        setTimeout(() => {
+            title.style.cssText += `
+                text-shadow: 
+                    0 0 10px rgba(197, 157, 55, 0.8),
+                    0 0 20px rgba(197, 157, 55, 0.6),
+                    0 0 30px rgba(197, 157, 55, 0.4),
+                    0 0 40px rgba(197, 157, 55, 0.2);
+                animation: neonPulse 2s ease-in-out infinite;
+            `;
+        }, index * 200);
+    });
+    
+    const neonStyle = document.createElement('style');
+    neonStyle.textContent = `
+        @keyframes neonPulse {
+            0%, 100% {
+                text-shadow: 
+                    0 0 10px rgba(197, 157, 55, 0.8),
+                    0 0 20px rgba(197, 157, 55, 0.6),
+                    0 0 30px rgba(197, 157, 55, 0.4);
+            }
+            50% {
+                text-shadow: 
+                    0 0 20px rgba(197, 157, 55, 1),
+                    0 0 30px rgba(197, 157, 55, 0.8),
+                    0 0 40px rgba(197, 157, 55, 0.6),
+                    0 0 50px rgba(197, 157, 55, 0.4);
+            }
+        }
+    `;
+    document.head.appendChild(neonStyle);
+}
+
+// ========== INICIALIZAR TODO ==========
+window.addEventListener('DOMContentLoaded', () => {
+    const footer = document.querySelector('.footer');
+    footer.style.position = 'relative';
+    footer.style.overflow = 'hidden';
+    
+    createWaveEffect();
+    createFloatingParticles();
+    enhanceSocialIcons();
+    addContactEffects();
+    addGlowingCursor();
+    addNeonTitles();
+});
+
+//5. HEADER ANIMACION
+// ========== PARTÍCULAS BRILLANTES EN EL HEADER ==========
+function createHeaderParticles() {
+    const header = document.querySelector('header') || document.querySelector('nav');
+    if (!header) return;
+    
+    const particleContainer = document.createElement('div');
+    particleContainer.className = 'header-particles';
+    particleContainer.style.cssText = `
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 1;
+    `;
+    
+    header.style.position = 'relative';
+    header.insertBefore(particleContainer, header.firstChild);
+    
+    // Crear partículas que se mueven horizontalmente
+    for (let i = 0; i < 40; i++) {
+        const particle = document.createElement('div');
+        const size = Math.random() * 4 + 2;
+        const startY = Math.random() * 100;
+        const duration = Math.random() * 15 + 10;
+        const delay = Math.random() * 5;
+        
+        particle.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            background: radial-gradient(circle, rgba(197, 157, 55, 1) 0%, rgba(197, 157, 55, 0) 70%);
+            border-radius: 50%;
+            top: ${startY}%;
+            left: -20px;
+            filter: blur(1px);
+            box-shadow: 0 0 ${size * 4}px rgba(197, 157, 55, 0.9);
+            animation: slideAcross ${duration}s ${delay}s infinite linear;
+        `;
+        
+        particleContainer.appendChild(particle);
+    }
+}
+
+// ========== EFECTO DE LÍNEA ANIMADA DEBAJO DEL HEADER ==========
+function createAnimatedLine() {
+    const header = document.querySelector('header') || document.querySelector('nav');
+    if (!header) return;
+    
+    const line = document.createElement('div');
+    line.style.cssText = `
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 3px;
+        width: 0;
+        background: linear-gradient(90deg, 
+            transparent,
+            rgba(197, 157, 55, 0.5),
+            rgba(197, 157, 55, 1),
+            rgba(197, 157, 55, 0.5),
+            transparent
+        );
+        box-shadow: 0 0 20px rgba(197, 157, 55, 0.8);
+        animation: expandLine 3s ease-in-out infinite;
+        z-index: 10;
+    `;
+    
+    header.appendChild(line);
+}
+
+// ========== EFECTO DE BRILLO EN EL LOGO ==========
+function enhanceLogo() {
+    const logo = document.querySelector('.logo') || document.querySelector('header img') || document.querySelector('nav img');
+    if (!logo) return;
+    
+    logo.style.transition = 'all 0.4s ease';
+    logo.style.filter = 'drop-shadow(0 0 10px rgba(197, 157, 55, 0.5))';
+    
+    logo.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.15) rotate(5deg)';
+        this.style.filter = `
+            drop-shadow(0 0 20px rgba(197, 157, 55, 1))
+            drop-shadow(0 0 40px rgba(197, 157, 55, 0.6))
+        `;
+    });
+    
+    logo.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1) rotate(0deg)';
+        this.style.filter = 'drop-shadow(0 0 10px rgba(197, 157, 55, 0.5))';
+    });
+    
+    // Pulso constante
+    setInterval(() => {
+        logo.style.filter = 'drop-shadow(0 0 20px rgba(197, 157, 55, 0.8))';
+        setTimeout(() => {
+            logo.style.filter = 'drop-shadow(0 0 10px rgba(197, 157, 55, 0.5))';
+        }, 500);
+    }, 2000);
+}
+
+// ========== EFECTO EXPLOSIVO EN LINKS DEL MENÚ ==========
+function enhanceMenuLinks() {
+    const links = document.querySelectorAll('nav a, header a');
+    
+    links.forEach((link, index) => {
+        link.style.position = 'relative';
+        link.style.transition = 'all 0.3s ease';
+        
+        // Crear underline animado
+        const underline = document.createElement('div');
+        underline.style.cssText = `
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #c59d37, transparent);
+            box-shadow: 0 0 10px rgba(197, 157, 55, 0.8);
+            transform: translateX(-50%);
+            transition: width 0.4s ease;
+        `;
+        link.appendChild(underline);
+        
+        link.addEventListener('mouseenter', function(e) {
+            underline.style.width = '100%';
+            this.style.color = '#c59d37';
+            this.style.textShadow = '0 0 20px rgba(197, 157, 55, 0.8)';
+            this.style.transform = 'translateY(-3px)';
+            
+            // Crear partículas explosivas
+            for (let i = 0; i < 8; i++) {
+                const spark = document.createElement('div');
+                const angle = (Math.PI * 2 * i) / 8;
+                const velocity = 30 + Math.random() * 20;
+                
+                spark.style.cssText = `
+                    position: absolute;
+                    width: 3px;
+                    height: 3px;
+                    background: #c59d37;
+                    border-radius: 50%;
+                    left: 50%;
+                    top: 50%;
+                    box-shadow: 0 0 8px #c59d37;
+                    pointer-events: none;
+                    animation: sparkExplode${index}-${i} 0.6s ease-out forwards;
+                `;
+                
+                const keyframes = `
+                    @keyframes sparkExplode${index}-${i} {
+                        to {
+                            transform: translate(${Math.cos(angle) * velocity}px, ${Math.sin(angle) * velocity}px);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                
+                const style = document.createElement('style');
+                style.textContent = keyframes;
+                document.head.appendChild(style);
+                
+                this.appendChild(spark);
+                
+                setTimeout(() => {
+                    spark.remove();
+                    style.remove();
+                }, 600);
+            }
+        });
+        
+        link.addEventListener('mouseleave', function() {
+            underline.style.width = '0';
+            this.style.color = '';
+            this.style.textShadow = '';
+            this.style.transform = 'translateY(0)';
+        });
+    });
+}
+
+// ========== EFECTO DE ONDA AL HACER SCROLL ==========
+function createScrollWave() {
+    const header = document.querySelector('header') || document.querySelector('nav');
+    if (!header) return;
+    
+    let lastScroll = 0;
+    
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > lastScroll && currentScroll > 50) {
+            // Scrolling down
+            header.style.transform = 'translateY(-100%)';
+            header.style.boxShadow = 'none';
+        } else {
+            // Scrolling up
+            header.style.transform = 'translateY(0)';
+            header.style.boxShadow = `
+                0 5px 30px rgba(0, 0, 0, 0.3),
+                0 0 50px rgba(197, 157, 55, 0.2)
+            `;
+        }
+        
+        lastScroll = currentScroll;
+    });
+    
+    header.style.transition = 'all 0.4s ease';
+}
+
+// ========== EFECTO GLASSMORPHISM DINÁMICO ==========
+function addGlassmorphism() {
+    const header = document.querySelector('header') || document.querySelector('nav');
+    if (!header) return;
+    
+    window.addEventListener('scroll', () => {
+        const scroll = window.pageYOffset;
+        const opacity = Math.min(scroll / 300, 0.95);
+        const blur = Math.min(scroll / 50, 20);
+        
+        header.style.background = `rgba(26, 26, 26, ${opacity})`;
+        header.style.backdropFilter = `blur(${blur}px)`;
+        header.style.webkitBackdropFilter = `blur(${blur}px)`;
+    });
+}
+
+// ========== EFECTO DE RIPPLE EN TODO EL HEADER ==========
+function addHeaderRipple() {
+    const header = document.querySelector('header') || document.querySelector('nav');
+    if (!header) return;
+    
+    header.addEventListener('click', function(e) {
+        const ripple = document.createElement('div');
+        const size = Math.max(header.offsetWidth, header.offsetHeight);
+        const rect = header.getBoundingClientRect();
+        
+        ripple.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(197, 157, 55, 0.4) 0%, transparent 70%);
+            left: ${e.clientX - rect.left - size/2}px;
+            top: ${e.clientY - rect.top - size/2}px;
+            pointer-events: none;
+            animation: rippleEffect 0.8s ease-out;
+            z-index: 0;
+        `;
+        
+        header.appendChild(ripple);
+        
+        setTimeout(() => ripple.remove(), 800);
+    });
+}
+
+// ========== TEXTO CON EFECTO NEÓN ==========
+function addNeonText() {
+    const headerText = document.querySelectorAll('header h1, header .brand, nav .brand');
+    
+    headerText.forEach(text => {
+        text.style.cssText += `
+            text-shadow: 
+                0 0 10px rgba(197, 157, 55, 0.8),
+                0 0 20px rgba(197, 157, 55, 0.6),
+                0 0 30px rgba(197, 157, 55, 0.4);
+            animation: neonGlow 2s ease-in-out infinite;
+        `;
+    });
+}
+
+// ========== PARTÍCULAS QUE SIGUEN EL CURSOR ==========
+function addCursorTrail() {
+    const header = document.querySelector('header') || document.querySelector('nav');
+    if (!header) return;
+    
+    header.addEventListener('mousemove', (e) => {
+        const trail = document.createElement('div');
+        const rect = header.getBoundingClientRect();
+        
+        trail.style.cssText = `
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, rgba(197, 157, 55, 1) 0%, transparent 70%);
+            border-radius: 50%;
+            left: ${e.clientX - rect.left}px;
+            top: ${e.clientY - rect.top}px;
+            pointer-events: none;
+            box-shadow: 0 0 15px rgba(197, 157, 55, 0.8);
+            animation: fadeTrail 0.8s ease-out forwards;
+            z-index: 5;
+        `;
+        
+        header.appendChild(trail);
+        
+        setTimeout(() => trail.remove(), 800);
+    });
+}
+
+// ========== ANIMACIONES CSS ==========
+const headerStyles = document.createElement('style');
+headerStyles.textContent = `
+    @keyframes slideAcross {
+        0% {
+            left: -20px;
+            opacity: 0;
+        }
+        10% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            left: 110%;
+            opacity: 0;
+        }
+    }
+    
+    @keyframes expandLine {
+        0%, 100% {
+            width: 0;
+            left: 50%;
+        }
+        50% {
+            width: 100%;
+            left: 0;
+        }
+    }
+    
+    @keyframes neonGlow {
+        0%, 100% {
+            text-shadow: 
+                0 0 10px rgba(197, 157, 55, 0.8),
+                0 0 20px rgba(197, 157, 55, 0.6),
+                0 0 30px rgba(197, 157, 55, 0.4);
+        }
+        50% {
+            text-shadow: 
+                0 0 20px rgba(197, 157, 55, 1),
+                0 0 30px rgba(197, 157, 55, 0.8),
+                0 0 40px rgba(197, 157, 55, 0.6),
+                0 0 50px rgba(197, 157, 55, 0.4);
+        }
+    }
+    
+    @keyframes rippleEffect {
+        to {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+    
+    @keyframes fadeTrail {
+        to {
+            transform: scale(0);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(headerStyles);
+
+// ========== INICIALIZAR TODOS LOS EFECTOS DEL HEADER ==========
+window.addEventListener('DOMContentLoaded', () => {
+    const header = document.querySelector('header') || document.querySelector('nav');
+    if (header) {
+        header.style.overflow = 'hidden';
+        header.style.position = 'relative';
+    }
+    
+    createHeaderParticles();
+    createAnimatedLine();
+    enhanceLogo();
+    enhanceMenuLinks();
+    createScrollWave();
+    addGlassmorphism();
+    addHeaderRipple();
+    addNeonText();
+    addCursorTrail();
+    
+    console.log('🔥 Header effects activated!');
+});
+
+
     </script>
-</body>
-</html>
+    </div>  
+
+    <div class="container">
+        <div class="toolbar">
+            <div></div>
+        </div>
+
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fotos/image1.png" alt="Cartera Fifth Ave S">
+                </div>
+                <h3 class="product-name">Cartera Fifth Ave S</h3>
+                <div class="product-price">$65.000</div>
+                <div class="product-tax">Precios sin impuestos nacionales: $53,719.01</div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fotos/image2.jpg" alt="Correa Colors Oro">
+                </div>
+                <h3 class="product-name">Bandolera Broadway</h3>
+                <div class="product-price">$55.000</div>
+                <div class="product-tax">Precios sin impuestos nacionales: $45,454.55</div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fotos/image3.jpg" alt="Correa Colors Oro">
+                </div>
+                <h3 class="product-name">Correa Colors Oro</h3>
+                <div class="product-price">$10.000</div>
+                <div class="product-tax">Precios sin impuestos nacionales: $8,264.46</div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fotos/image4.png" alt="Correa Colors Oro">
+                </div>
+                <h3 class="product-name">Correa Colors Oro</h3>
+                <div class="product-price">$10.000</div>
+                <div class="product-tax">Precios sin impuestos nacionales: $8,264.46</div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fotos/image5.jpg" alt="Correa Colors Oro">
+                </div>
+                <h3 class="product-name">Correa Colors Oro</h3>
+                <div class="product-price">$10.000</div>
+                <div class="product-tax">Precios sin impuestos nacionales: $8,264.46</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fotos/image6.jpg" alt="Correa Colors Oro">
+                </div>
+                <h3 class="product-name">Correa Colors Oro</h3>
+                <div class="product-price">$10.000</div>
+                <div class="product-tax">Precios sin impuestos nacionales: $8,264.46</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fotos/image7.jpg" alt="Correa Colors Oro">
+                </div>
+                <h3 class="product-name">Correa Colors Oro</h3>
+                <div class="product-price">$10.000</div>
+                <div class="product-tax">Precios sin impuestos nacionales: $8,264.46</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fotos/image8.jpg" alt="Correa Colors Oro">
+                </div>
+                <h3 class="product-name">Correa Colors Oro</h3>
+                <div class="product-price">$10.000</div>
+                <div class="product-tax">Precios sin impuestos nacionales: $8,264.46</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fotos/image9.jpg" alt="Correa Colors Oro">
+                </div>
+                <h3 class="product-name">Correa Colors Oro</h3>
+                <div class="product-price">$10.000</div>
+                <div class="product-tax">Precios sin impuestos nacionales: $8,264.46</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fotos/image10.jpg" alt="Correa Colors Oro">
+                </div>
+                <h3 class="product-name">Correa Colors Oro</h3>
+                <div class="product-price">$10.000</div>
+                <div class="product-tax">Precios sin impuestos nacionales: $8,264.46</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fotos/image11.jpg" alt="Correa Colors Oro">
+                </div>
+                <h3 class="product-name">Correa Colors Oro</h3>
+                <div class="product-price">$10.000</div>
+                <div class="product-tax">Precios sin impuestos nacionales: $8,264.46</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fotos/image12.jpg" alt="Correa Colors Oro">
+                </div>
+                <h3 class="product-name">Correa Colors Oro</h3>
+                <div class="product-price">$10.000</div>
+                <div class="product-tax">Precios sin impuestos nacionales: $8,264.46</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fotos/image13.jpg" alt="Correa Colors Oro">
+                </div>
+                <h3 class="product-name">Correa Colors Oro</h3>
+                <div class="product-price">$10.000</div>
+                <div class="product-tax">Precios sin impuestos nacionales: $8,264.46</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fotos/image14.jpg" alt="Correa Colors Oro">
+                </div>
+                <h3 class="product-name">Correa Colors Oro</h3>
+                <div class="product-price">$10.000</div>
+                <div class="product-tax">Precios sin impuestos nacionales: $8,264.46</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fotos/image15.jpg" alt="Correa Colors Oro">
+                </div>
+                <h3 class="product-name">Correa Colors Oro</h3>
+                <div class="product-price">$10.000</div>
+                <div class="product-tax">Precios sin impuestos nacionales: $8,264.46</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fotos/image16.jpg" alt="Correa Colors Oro">
+                </div>
+                <h3 class="product-name">Correa Colors Oro</h3>
+                <div class="product-price">$10.000</div>
+                <div class="product-tax">Precios sin impuestos nacionales: $8,264.46</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fotos/image17.jpg" alt="Correa Colors Oro">
+                </div>
+                <h3 class="product-name">Correa Colors Oro</h3>
+                <div class="product-price">$10.000</div>
+                <div class="product-tax">Precios sin impuestos nacionales: $8,264.46</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fotos/image18.jpg" alt="Correa Colors Oro">
+                </div>
+                <h3 class="product-name">Correa Colors Oro</h3>
+                <div class="product-price">$10.000</div>
+                <div class="product-tax">Precios sin impuestos nacionales: $8,264.46</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fotos/image19.jpg" alt="Correa Colors Oro">
+                </div>
+                <h3 class="product-name">Correa Colors Oro</h3>
+                <div class="product-price">$10.000</div>
+                <div class="product-tax">Precios sin impuestos nacionales: $8,264.46</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fotos/image20.jpg" alt="Correa Colors Oro">
+                </div>
+                <h3 class="product-name">Correa Colors Oro</h3>
+                <div class="product-price">$10.000</div>
+                <div class="product-tax">Precios sin impuestos nacionales: $8,264.46</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fotos/image21.jpg" alt="Correa Colors Oro">
+                </div>
+                <h3 class="product-name">Correa Colors Oro</h3>
+                <div class="product-price">$10.000</div>
+                <div class="product-tax">Precios sin impuestos nacionales: $8,264.46</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fotos/image22.jpg" alt="Correa Colors Oro">
+                </div>
+                <h3 class="product-name">Correa Colors Oro</h3>
+                <div class="product-price">$10.000</div>
+                <div class="product-tax">Precios sin impuestos nacionales: $8,264.46</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fotos/image23.jpg" alt="Correa Colors Oro">
+                </div>
+                <h3 class="product-name">Correa Colors Oro</h3>
+                <div class="product-price">$10.000</div>
+                <div class="product-tax">Precios sin impuestos nacionales: $8,264.46</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="fotos/image24.jpg" alt="Correa Colors Oro">
+                </div>
+                <h3 class="product-name">Correa Colors Oro</h3>
+                <div class="product-price">$10.000</div>
+                <div class="product-tax">Precios sin impuestos nacionales: $8,264.46</div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sobre Nosotros</h3>
+                <p>Date el Gusto es tu tienda de confianza para encontrar las carteras, accesorios y esmaltes más elegantes. Calidad y estilo en cada producto.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <div class="contact-item">
+                    <span>📍</span>
+                    <p>San Miguel de Tucumán, Argentina</p>
+                </div>
+                <div class="contact-item">
+                    <span>📧</span>
+                    <a href="dateelgustoahoraoficial@gmail.com">dateelgustoahoraoficial@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <span>📱</span>
+                    <a href="https://wa.me/5493816543210" target="_blank">+54 9 381 654-3210</a>
+                </div>
+                 <div class="contact-item">
+                    <span>📱</span>
+                    <a href="https://wa.me/5492975178203" target="_blank">+54 9 297 517-8203</a>
+                </div>
+                    <div class="contact-item">
+                    <span>🕐</span>
+                    <p>Lun - Sáb: 8:00 - 22:00</p>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Síguenos</h3>
+                <p>Mantente al día con nuestras últimas novedades y promociones</p>
+                <!--<div class="social-icons">
+                    <a href="https://www.facebook.com/dateelgusto" target="_blank" class="social-icon" title="Facebook">
+                        📘
+                    </a>
+                    <a href="https://www.instagram.com/dateelgusto" target="_blank" class="social-icon" title="Instagram">
+                        📷
+                    </a>
+                    <a href="https://wa.me/5493814784612" target="_blank" class="social-icon" title="WhatsApp">
+                        💬
+                    </a>
+                </div> -->
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2020 Date el Gusto. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        setTimeout(() => {
+            document.getElementById('notification').style.display = 'none';
